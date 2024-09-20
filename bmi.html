@@ -10,10 +10,15 @@
 var height=160;
 var bmi = weight/((height/100)**2);
 
-console.log("Hello, Your BMI 123is:"+ bmi);
+console.log("Hello, Your BMI is:"+ bmi);
 </script>
 <body>
-    
+    <label> for= "weight">Please input your weight:</label>
+    <input  type="number" id="weight">
+    <label> for= "height">Please input your weight:</label>
+    <input  type="number" id="height">
+    <button onclick="calcBmi()">Calc Bmi</button>
+    <p id="bmi"></p>
 </body>
 <script>scr="bmi.js"</script>
 </html>
