@@ -1,39 +1,39 @@
 //download live.server
 
 const Live = 1; //1=live
-const Dead = 0; //0=dead
+const Dead = 0; //0=dead //定義生=1 or 死=0
 
-class Life{
-   constructor(_row, _col){
+class Life{  //class=用來作為建立新物件的模板
+   constructor(_row, _col){  //一個 class 只能有一個稱為 constructor 的特殊物件。
         this.row = _row;
         this.col = _col;
-        this.grid=[];//new Array()
+        this.grid=[];//new Array() //grid=格子
         //2d array
         for(var _row=0;_row < this.row;_row++){
-            this.grid.push([]);
+            this.grid.push([]); //push=會將一或多個的值，加入至一個陣列中。
             for(var _col=0;_col < this.col;_col++){
-                this.grid[_row].push(Dead); //待理解
+                this.grid[_row].push(Dead); //
             }
         }
         
     }
-    initialize = function(){
+    initialize = function(){ //initialize=初始化
         this.grid[1][1] = Live;
         this.grid[1][2] = this.grid[1][3] = this.grid[1][4] =Live; 
     }
 
-    update = function(){
-          var nextGrid = JSON.parse(JSON.stringify(this.grid)); //待理解  
+    update = function(){ //update=更新
+          var nextGrid = JSON.parse(JSON.stringify(this.grid)); //JSON.parse() 可以接收 JSON 字串，轉為 Javascript 物件或是值。 stringify 則視為動詞字串化
           //travse all elements, count its neighbor
           var neighbor;
           for (let _row = 0; _row < this.row; _row++) {
             for (let _col = 0; _col < this.row; _col++) {
-                neighbor = this.neighborCount(_row, _col);
+                neighbor = this.neighborCount(_row, _col); //計算附近鄰居的狀態
                 // update by 4 rules
-                if(this.getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){
+                if(this.getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){  //小於等於1 or 大於等於4 都會死
                     nextGrid[_row][_col] = Dead;
                 }
-                if(this.getStatusAt(_row,_col)==Dead && neighbor==3){
+                if(this.getStatusAt(_row,_col)==Dead && neighbor==3){  //等於3活
                     nextGrid[_row][_col] = Live;
                 }
 
@@ -41,7 +41,7 @@ class Life{
             
           }
 
-          this.grid = null;
+          this.grid = null; //null代表的是一個變數的空值，可以理解為「沒有」。
           this.grid = nextGrid;
     } 
 
@@ -72,7 +72,7 @@ class Life{
 
 draw = function(_canvas){
     var canvas = document.getElementById(_canvas).getContext("2d");
-    this.size=Math.min(canvas.canvas.height/this.row, canvas.canvas.width/this.col);
+    this.size=Math.min(canvas.canvas.height/this.row, canvas.canvas.width/this.col);  //row=y,col=x
     for(var _row=0;_row<this.row;_row++){
         for(var _col=0;_col<this.col;_col++){
             //ar2d[_row][_col]=>0,1
@@ -105,9 +105,9 @@ drawPoint = function(_canvas,_row,_col){
 
 // }
 
-function tonext(){
+function tonext(){  //下一個世代
     myGame.update();
-    myGame.draw("map")//下一個世代
+    myGame.draw("map")
 }
 
 //判斷是死是活 0=dead 1=live
@@ -118,9 +118,9 @@ function mouseclick(event){
     myGame.drawPoint("map",_row,_col);
 }
 
-function random(){
-    myGame.initialize(true);
-    myGame.draw("map");//待理解
+function random(){  //函數 Math.random() 會回傳一個偽隨機小數 (pseudo-random) 介於 0 到 1 之間(包含 0，不包含 1)
+    myGame.initialize(true); //initialize 初始化
+    myGame.draw("map");
  }
  
  var myTime;
