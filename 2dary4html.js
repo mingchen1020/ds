@@ -16,7 +16,7 @@ var col=ary2d[0].length;
 
 //draw map
 var canvas = document.getElementById("map").getContext("2d");
-var size=Math.min(canvas.canvas.height/row, canvas.canvas.width/col);
+var size=Math.min(canvas.canvas.height/row, canvas.canvas.width/col); //計算畫布裡格子大小
 for(var _row=0;_row<row;_row++){
     for(var _col=0;_col<col;_col++){
         //ar2d[_row][_col]=>0,1
@@ -26,8 +26,8 @@ for(var _row=0;_row<row;_row++){
             canvas.fillStyle="#000000"
         }
         //600/5=>120  coordinate x,y , width, heigth
-        canvas.fillRect(_col*size,_row*size,size,size);
-        canvas.strokeRect(_col*size,_row*size,size,size);
+        canvas.fillRect(_col*size,_row*size,size,size);  //fillRect=直接在畫布上繪製填充
+        canvas.strokeRect(_col*size,_row*size,size,size); //strokeRect=繪製矩形
     }
 }
 
