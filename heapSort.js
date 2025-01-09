@@ -12,7 +12,7 @@ Array.prototype.heapSort=function(){   //heapsot = 堆積排序
       this.shiftDown(0, end-1);
    }
 }
-Array.prototype.shiftDown=function(internal, end){
+Array.prototype.shiftDown=function(internal, end){   //從一個最大堆中取出一個元素
     while(internal*2+1<=end){ //has child
          var left=internal*2+1;
          var right=internal*2+2;
